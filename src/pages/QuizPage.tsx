@@ -1,10 +1,22 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import Navbar from '@/components/Navbar';
 import MathQuiz from '@/components/MathQuiz';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useToast } from '@/hooks/use-toast';
 
 const QuizPage = () => {
+  const [selectedTopic, setSelectedTopic] = useState('');
+  const { toast } = useToast();
+
+  const handleTopicSelect = (topic: string) => {
+    setSelectedTopic(topic);
+    toast({
+      title: `Topik ${topic} dipilih`,
+      description: `Anda telah memilih topik ${topic}`,
+    });
+  };
+  
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
@@ -74,24 +86,40 @@ const QuizPage = () => {
           <div className="bg-white rounded-lg shadow-md p-6">
             <h3 className="text-xl font-bold text-mathapp-blue mb-4">Topik Matematika</h3>
             <ul className="space-y-2">
-              <li className="p-2 bg-mathapp-blue/10 rounded-md hover:bg-mathapp-blue/20 cursor-pointer">
+              <li 
+                className={`p-2 rounded-md hover:bg-mathapp-blue/20 cursor-pointer transition-colors ${selectedTopic === 'Penjumlahan dan Pengurangan' ? 'bg-mathapp-blue/20 font-medium' : 'bg-mathapp-blue/10'}`}
+                onClick={() => handleTopicSelect('Penjumlahan dan Pengurangan')}
+              >
                 Penjumlahan dan Pengurangan
               </li>
-              <li className="p-2 bg-mathapp-blue/10 rounded-md hover:bg-mathapp-blue/20 cursor-pointer">
+              <li 
+                className={`p-2 rounded-md hover:bg-mathapp-blue/20 cursor-pointer transition-colors ${selectedTopic === 'Perkalian dan Pembagian' ? 'bg-mathapp-blue/20 font-medium' : 'bg-mathapp-blue/10'}`}
+                onClick={() => handleTopicSelect('Perkalian dan Pembagian')}
+              >
                 Perkalian dan Pembagian
               </li>
-              <li className="p-2 bg-mathapp-blue/10 rounded-md hover:bg-mathapp-blue/20 cursor-pointer">
+              <li 
+                className={`p-2 rounded-md hover:bg-mathapp-blue/20 cursor-pointer transition-colors ${selectedTopic === 'Pecahan' ? 'bg-mathapp-blue/20 font-medium' : 'bg-mathapp-blue/10'}`}
+                onClick={() => handleTopicSelect('Pecahan')}
+              >
                 Pecahan
               </li>
-              <li className="p-2 bg-mathapp-blue/10 rounded-md hover:bg-mathapp-blue/20 cursor-pointer">
+              <li 
+                className={`p-2 rounded-md hover:bg-mathapp-blue/20 cursor-pointer transition-colors ${selectedTopic === 'Geometri' ? 'bg-mathapp-blue/20 font-medium' : 'bg-mathapp-blue/10'}`}
+                onClick={() => handleTopicSelect('Geometri')}
+              >
                 Geometri
               </li>
-              <li className="p-2 bg-mathapp-blue/10 rounded-md hover:bg-mathapp-blue/20 cursor-pointer">
+              <li 
+                className={`p-2 rounded-md hover:bg-mathapp-blue/20 cursor-pointer transition-colors ${selectedTopic === 'Pengukuran' ? 'bg-mathapp-blue/20 font-medium' : 'bg-mathapp-blue/10'}`}
+                onClick={() => handleTopicSelect('Pengukuran')}
+              >
                 Pengukuran
               </li>
             </ul>
           </div>
           
+          {/* The difficulty level section */}
           <div className="bg-white rounded-lg shadow-md p-6">
             <h3 className="text-xl font-bold text-mathapp-green mb-4">Tingkat Kesulitan</h3>
             <ul className="space-y-2">
@@ -110,6 +138,7 @@ const QuizPage = () => {
             </ul>
           </div>
           
+          {/* The achievements section */}
           <div className="bg-white rounded-lg shadow-md p-6">
             <h3 className="text-xl font-bold text-mathapp-purple mb-4">Pencapaianmu</h3>
             <div className="space-y-4">
@@ -138,6 +167,22 @@ const QuizPage = () => {
             </div>
           </div>
         </div>
+        
+        {/* Display selected topic information */}
+        {selectedTopic && (
+          <div className="mt-6 bg-white rounded-lg shadow-md p-6">
+            <h3 className="text-xl font-bold text-mathapp-blue mb-4">Topik: {selectedTopic}</h3>
+            <p className="text-gray-600">
+              Latihan soal untuk topik {selectedTopic}. Pilih tingkat kesulitan 
+              untuk mulai mengerjakan soal.
+            </p>
+            <div className="mt-4 grid grid-cols-1 md:grid-cols-3 gap-4">
+              <button className="bg-mathapp-blue text-white py-2 px-4 rounded hover:bg-mathapp-blue/90 transition-colors">
+                Mulai Latihan
+              </button>
+            </div>
+          </div>
+        )}
       </div>
       
       {/* Footer */}
