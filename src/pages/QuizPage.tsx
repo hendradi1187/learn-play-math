@@ -1,9 +1,10 @@
-
 import React, { useState } from 'react';
 import Navbar from '@/components/Navbar';
 import MathQuiz from '@/components/MathQuiz';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useToast } from '@/hooks/use-toast';
+import { Button } from '@/components/ui/button';
+import { PlayCircle } from 'lucide-react';
 
 const QuizPage = () => {
   const [selectedTopic, setSelectedTopic] = useState('');
@@ -172,7 +173,6 @@ const QuizPage = () => {
                 </ul>
               </div>
               
-              {/* The difficulty level section */}
               <div className="bg-white rounded-lg shadow-md p-6">
                 <h3 className="text-xl font-bold text-mathapp-green mb-4">Tingkat Kesulitan</h3>
                 <ul className="space-y-2">
@@ -200,7 +200,6 @@ const QuizPage = () => {
                 </ul>
               </div>
               
-              {/* The achievements section */}
               <div className="bg-white rounded-lg shadow-md p-6">
                 <h3 className="text-xl font-bold text-mathapp-purple mb-4">Pencapaianmu</h3>
                 <div className="space-y-4">
@@ -230,26 +229,31 @@ const QuizPage = () => {
               </div>
             </div>
             
-            {/* Display selected topic information */}
             {selectedTopic && (
               <div className="mt-6 bg-white rounded-lg shadow-md p-6">
                 <h3 className="text-xl font-bold text-mathapp-blue mb-4">Topik: {selectedTopic}</h3>
-                <p className="text-gray-600">
+                <p className="text-gray-600 mb-4">
                   Latihan soal untuk topik {selectedTopic}. Pilih tingkat kesulitan 
                   untuk mulai mengerjakan soal.
                 </p>
-                <div className="mt-4 grid grid-cols-1 md:grid-cols-3 gap-4">
-                  <button 
-                    className={`py-2 px-4 rounded transition-colors ${
-                      selectedDifficulty ? 
-                      'bg-mathapp-blue text-white hover:bg-mathapp-blue/90' : 
-                      'bg-mathapp-blue/50 text-white cursor-not-allowed'
-                    }`}
+                <div className="mt-4">
+                  <Button 
                     onClick={handleStartQuiz}
                     disabled={!selectedDifficulty}
+                    className={`py-6 px-6 text-lg rounded-lg transition-all transform hover:scale-105 ${
+                      selectedDifficulty ? 
+                      'bg-gradient-to-r from-mathapp-purple to-mathapp-blue text-white shadow-lg' : 
+                      'bg-gray-300 text-gray-600 cursor-not-allowed'
+                    }`}
                   >
+                    <PlayCircle className="mr-2" />
                     Mulai Latihan
-                  </button>
+                  </Button>
+                  {!selectedDifficulty && (
+                    <p className="text-sm text-amber-600 mt-2">
+                      Pilih tingkat kesulitan terlebih dahulu
+                    </p>
+                  )}
                 </div>
               </div>
             )}
@@ -257,7 +261,6 @@ const QuizPage = () => {
         )}
       </div>
       
-      {/* Footer */}
       <footer className="bg-gray-800 text-white py-6 mt-auto">
         <div className="container mx-auto px-4 text-center">
           <p>&copy; 2025 MathaFun. Hak Cipta Dilindungi.</p>
