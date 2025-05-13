@@ -1,0 +1,153 @@
+
+import React from 'react';
+import Navbar from '@/components/Navbar';
+import MathQuiz from '@/components/MathQuiz';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+
+const QuizPage = () => {
+  return (
+    <div className="min-h-screen flex flex-col">
+      <Navbar />
+      
+      {/* Header */}
+      <div className="bg-gradient-to-r from-mathapp-blue to-mathapp-purple py-8 px-4">
+        <div className="container mx-auto">
+          <h1 className="text-3xl md:text-4xl font-bold text-white">Latihan Soal Matematika</h1>
+          <p className="text-white/90 mt-2">
+            Pilih kategori soal dan tingkat kesulitan sesuai kebutuhanmu
+          </p>
+        </div>
+      </div>
+      
+      {/* Quiz Content */}
+      <div className="container mx-auto py-8 px-4">
+        <div className="bg-white rounded-lg shadow-md p-6 mb-8">
+          <Tabs defaultValue="kelas3" className="w-full">
+            <TabsList className="grid grid-cols-3 md:grid-cols-6 gap-2">
+              <TabsTrigger value="kelas1">Kelas 1</TabsTrigger>
+              <TabsTrigger value="kelas2">Kelas 2</TabsTrigger>
+              <TabsTrigger value="kelas3">Kelas 3</TabsTrigger>
+              <TabsTrigger value="kelas4">Kelas 4</TabsTrigger>
+              <TabsTrigger value="kelas5">Kelas 5</TabsTrigger>
+              <TabsTrigger value="kelas6">Kelas 6</TabsTrigger>
+            </TabsList>
+            <div className="mt-6">
+              <TabsContent value="kelas1">
+                <p className="text-gray-600 mb-6">Latihan soal matematika untuk siswa kelas 1 SD</p>
+                <div className="bg-mathapp-background p-4 rounded-lg">
+                  <p className="text-center text-gray-500">Konten latihan soal kelas 1 akan segera hadir!</p>
+                </div>
+              </TabsContent>
+              <TabsContent value="kelas2">
+                <p className="text-gray-600 mb-6">Latihan soal matematika untuk siswa kelas 2 SD</p>
+                <div className="bg-mathapp-background p-4 rounded-lg">
+                  <p className="text-center text-gray-500">Konten latihan soal kelas 2 akan segera hadir!</p>
+                </div>
+              </TabsContent>
+              <TabsContent value="kelas3">
+                <p className="text-gray-600 mb-6">Latihan soal matematika untuk siswa kelas 3 SD</p>
+                <MathQuiz />
+              </TabsContent>
+              <TabsContent value="kelas4">
+                <p className="text-gray-600 mb-6">Latihan soal matematika untuk siswa kelas 4 SD</p>
+                <div className="bg-mathapp-background p-4 rounded-lg">
+                  <p className="text-center text-gray-500">Konten latihan soal kelas 4 akan segera hadir!</p>
+                </div>
+              </TabsContent>
+              <TabsContent value="kelas5">
+                <p className="text-gray-600 mb-6">Latihan soal matematika untuk siswa kelas 5 SD</p>
+                <div className="bg-mathapp-background p-4 rounded-lg">
+                  <p className="text-center text-gray-500">Konten latihan soal kelas 5 akan segera hadir!</p>
+                </div>
+              </TabsContent>
+              <TabsContent value="kelas6">
+                <p className="text-gray-600 mb-6">Latihan soal matematika untuk siswa kelas 6 SD</p>
+                <div className="bg-mathapp-background p-4 rounded-lg">
+                  <p className="text-center text-gray-500">Konten latihan soal kelas 6 akan segera hadir!</p>
+                </div>
+              </TabsContent>
+            </div>
+          </Tabs>
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="bg-white rounded-lg shadow-md p-6">
+            <h3 className="text-xl font-bold text-mathapp-blue mb-4">Topik Matematika</h3>
+            <ul className="space-y-2">
+              <li className="p-2 bg-mathapp-blue/10 rounded-md hover:bg-mathapp-blue/20 cursor-pointer">
+                Penjumlahan dan Pengurangan
+              </li>
+              <li className="p-2 bg-mathapp-blue/10 rounded-md hover:bg-mathapp-blue/20 cursor-pointer">
+                Perkalian dan Pembagian
+              </li>
+              <li className="p-2 bg-mathapp-blue/10 rounded-md hover:bg-mathapp-blue/20 cursor-pointer">
+                Pecahan
+              </li>
+              <li className="p-2 bg-mathapp-blue/10 rounded-md hover:bg-mathapp-blue/20 cursor-pointer">
+                Geometri
+              </li>
+              <li className="p-2 bg-mathapp-blue/10 rounded-md hover:bg-mathapp-blue/20 cursor-pointer">
+                Pengukuran
+              </li>
+            </ul>
+          </div>
+          
+          <div className="bg-white rounded-lg shadow-md p-6">
+            <h3 className="text-xl font-bold text-mathapp-green mb-4">Tingkat Kesulitan</h3>
+            <ul className="space-y-2">
+              <li className="p-2 bg-mathapp-green/10 rounded-md hover:bg-mathapp-green/20 cursor-pointer flex items-center">
+                <span className="h-3 w-3 rounded-full bg-green-400 mr-2"></span>
+                Mudah
+              </li>
+              <li className="p-2 bg-mathapp-green/10 rounded-md hover:bg-mathapp-green/20 cursor-pointer flex items-center">
+                <span className="h-3 w-3 rounded-full bg-yellow-400 mr-2"></span>
+                Sedang
+              </li>
+              <li className="p-2 bg-mathapp-green/10 rounded-md hover:bg-mathapp-green/20 cursor-pointer flex items-center">
+                <span className="h-3 w-3 rounded-full bg-red-400 mr-2"></span>
+                Sulit
+              </li>
+            </ul>
+          </div>
+          
+          <div className="bg-white rounded-lg shadow-md p-6">
+            <h3 className="text-xl font-bold text-mathapp-purple mb-4">Pencapaianmu</h3>
+            <div className="space-y-4">
+              <div>
+                <div className="flex justify-between mb-1">
+                  <span>Total Soal Diselesaikan</span>
+                  <span className="font-bold">15/100</span>
+                </div>
+                <div className="w-full bg-gray-200 rounded-full h-2">
+                  <div className="bg-mathapp-purple h-2 rounded-full" style={{ width: '15%' }}></div>
+                </div>
+              </div>
+              <div>
+                <div className="flex justify-between mb-1">
+                  <span>Akurasi Jawaban</span>
+                  <span className="font-bold">80%</span>
+                </div>
+                <div className="w-full bg-gray-200 rounded-full h-2">
+                  <div className="bg-mathapp-green h-2 rounded-full" style={{ width: '80%' }}></div>
+                </div>
+              </div>
+              <div className="pt-2">
+                <p className="font-bold">Poin: 120</p>
+                <p className="text-sm text-gray-600">Peringkat: 24 dari 100</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      {/* Footer */}
+      <footer className="bg-gray-800 text-white py-6 mt-auto">
+        <div className="container mx-auto px-4 text-center">
+          <p>&copy; 2025 MathaFun. Hak Cipta Dilindungi.</p>
+        </div>
+      </footer>
+    </div>
+  );
+};
+
+export default QuizPage;
